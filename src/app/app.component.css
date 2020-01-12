@@ -1,0 +1,11 @@
+.shopping-block {
+  display: flex;
+}
+
+.product-list {
+  flex-grow: 8;
+}
+
+.shopping-cart {
+  flex-grow: 2;
+}
