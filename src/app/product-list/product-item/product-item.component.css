@@ -1,0 +1,17 @@
+.description {
+  color: #555555;
+  font-size: 14px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.price {
+  margin: auto 5px;
+  font-size: 16px;
+}
+
+.add-btn {
+  float: right;
+}
