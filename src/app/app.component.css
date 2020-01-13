@@ -3,9 +3,9 @@
 }
 
 .product-list {
-  flex-grow: 8;
+  width: 80%;
 }
 
 .shopping-cart {
-  flex-grow: 2;
+  width: 20%;
 }

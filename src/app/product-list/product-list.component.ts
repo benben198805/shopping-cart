@@ -1,19 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductItem} from "../share/product.model";
-import {mockProducts} from "../share/mock-data";
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-  products = [] as ProductItem[];
+export class ProductListComponent {
+  @Input() products: ProductItem[];
+  @Output() productsChange = new EventEmitter();
 
   constructor() {
-  }
-
-  ngOnInit() {
-    this.products = mockProducts;
   }
 }

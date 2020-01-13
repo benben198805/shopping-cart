@@ -1,3 +1,14 @@
 <div>
-    <p>shopping-cart works!</p>
+  <h3>购物车</h3>
+  <div>
+    <ng-container *ngIf="hasItemInCart;else noProducts">
+      <div *ngFor="let product of displayItems">
+        商品：{{product.name}} {{product.price}}*{{product.count}} 小计：{{product.price * product.count}}
+      </div>
+      <div>合计: {{total}}</div>
+    </ng-container>
+    <ng-template #noProducts>
+      购物车暂无选中商品
+    </ng-template>
+  </div>
 </div>

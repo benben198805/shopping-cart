@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {ProductItem} from "../share/product.model";
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent {
+  @Input() products: ProductItem[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  get hasItemInCart() {
+    return this.displayItems.length > 0
+  }
+
+  get displayItems(): ProductItem[] {
+    return this.products.filter(item => item.count > 0);
+  }
+
+  get total() {
+    return this.displayItems.reduce((sum, item) => sum + item.count * item.price, 0)
+  }
 }
