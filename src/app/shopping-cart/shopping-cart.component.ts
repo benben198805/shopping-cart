@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProductItem} from "../share/product.model";
+import {CartItem} from "../share/product.model";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,26 +7,21 @@ import {ProductItem} from "../share/product.model";
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-  @Input() products: ProductItem[];
-  @Output() productsChange = new EventEmitter();
+  @Input() carts: CartItem[];
+  @Output() cartsChange = new EventEmitter();
 
   constructor() {
   }
 
   get hasItemInCart() {
-    return this.displayItems.length > 0
-  }
-
-  get displayItems(): ProductItem[] {
-    return this.products.filter(item => item.count > 0);
+    return this.carts.length > 0
   }
 
   get total() {
-    return this.displayItems.reduce((sum, item) => sum + item.count * item.price, 0)
+    return this.carts.reduce((sum, item) => sum + item.count * item.price, 0)
   }
 
   reset() {
-    let emptyCarts = this.products.map(item => ({...item, count: 0}));
-    this.productsChange.emit(emptyCarts);
+    this.cartsChange.emit([]);
   }
 }

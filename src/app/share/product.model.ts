@@ -1,6 +1,14 @@
 export interface ProductItem {
+  uuid: string,
   name: string,
   img: string,
-  price: number,
+  price: number
+}
+
+export interface CartItem {
+  uuid: string,
+  name: string,
+  price: number
   count: number
 }
+

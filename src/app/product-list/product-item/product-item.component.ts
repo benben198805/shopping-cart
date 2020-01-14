@@ -8,13 +8,12 @@ import {ProductItem} from "../../share/product.model";
 })
 export class ProductItemComponent {
   @Input() product: ProductItem;
-  @Output() productChange = new EventEmitter();
+  @Output() addToCart = new EventEmitter();
 
   constructor() {
   }
 
-  addToCart() {
-    this.product.count++;
-    this.productChange.emit(this.product)
+  add() {
+    this.addToCart.emit()
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductItem} from "./share/product.model";
+import {CartItem, ProductItem} from "./share/product.model";
 import {mockProducts} from "./share/mock-data";
 
 @Component({
@@ -9,10 +9,22 @@ import {mockProducts} from "./share/mock-data";
 })
 export class AppComponent implements OnInit {
   products = [] as ProductItem[];
+  carts = [] as CartItem[];
 
   ngOnInit(): void {
     this.products = mockProducts;
   }
 
+  addToCart(uuid: string) {
+    let cartItem = this.carts.find(item => item.uuid === uuid);
+    if (cartItem) {
+      cartItem.count++;
+    } else {
+      let productItem = this.products.find(item => item.uuid === uuid);
+      this.carts.push({
+        ...productItem, count: 1
+      })
+    }
+  }
 
 }
