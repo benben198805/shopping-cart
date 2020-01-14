@@ -3,7 +3,9 @@
   <div>
     <ng-container *ngIf="hasItemInCart;else noProducts">
       <div *ngFor="let item of carts" class="item">
-        {{item.name}}: {{item.price | currency}}<app-count-operator [(count)]="item.count"></app-count-operator> 小计：{{item.price * item.count| currency}}
+        {{item.name}}: {{item.price | currency}}
+        <app-count-operator [(count)]="item.count" (removeItem)="removeItem(item.uuid)"></app-count-operator>
+        小计：{{item.price * item.count| currency}}
       </div>
       <div>---------------------------</div>
       <div>合计: {{ total | currency }}</div>

@@ -9,6 +9,7 @@ export class CountOperatorComponent implements OnInit {
   @Input() count: number;
   @Input() unit: string;
   @Output() countChange = new EventEmitter<number>();
+  @Output() removeItem = new EventEmitter();
 
   constructor() {
   }
@@ -17,11 +18,17 @@ export class CountOperatorComponent implements OnInit {
   }
 
   addCount() {
-    this.countChange.emit(this.count++);
+    this.count++;
+    this.countChange.emit(this.count);
   }
 
   minusCount() {
-    this.countChange.emit(this.count--);
+    this.count--;
+    if (this.count > 0) {
+      this.countChange.emit(this.count);
+    } else if (this.count === 0) {
+      this.removeItem.emit();
+    }
   }
 
 }

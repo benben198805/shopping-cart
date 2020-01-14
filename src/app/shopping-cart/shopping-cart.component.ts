@@ -24,4 +24,9 @@ export class ShoppingCartComponent {
   reset() {
     this.cartsChange.emit([]);
   }
+
+  removeItem(uuid: string) {
+    this.carts = this.carts.filter(item => item.uuid !== uuid);
+    this.cartsChange.emit(this.carts);
+  }
 }
