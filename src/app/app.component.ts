@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {CartItem} from "./share/model/product.model";
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,4 @@ import {CartItem} from "./share/model/product.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  carts = [] as CartItem[];
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartItem, ProductItem} from "../share/model/product.model";
 import {ShoppingCartService} from "../share/service/shopping-cart.service";
 
@@ -8,8 +8,7 @@ import {ShoppingCartService} from "../share/service/shopping-cart.service";
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  @Input() carts: CartItem[];
-  @Output() cartsChange = new EventEmitter();
+  carts: CartItem[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService) {
   }
@@ -23,12 +22,11 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   reset() {
-    this.cartsChange.emit([]);
+    this.carts = [];
   }
 
   removeItem(uuid: string) {
     this.carts = this.carts.filter(item => item.uuid !== uuid);
-    this.cartsChange.emit(this.carts);
   }
 
   ngOnInit(): void {
