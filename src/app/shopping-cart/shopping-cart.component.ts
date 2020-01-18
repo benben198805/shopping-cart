@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {CartItem, ProductItem} from "../share/model/product.model";
+import {AddToCartItem, CartItem, ProductItem} from "../share/model/product.model";
 import {ShoppingCartService} from "../share/service/shopping-cart.service";
+import {mockProducts} from "../share/mock/mock-data";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,8 +10,10 @@ import {ShoppingCartService} from "../share/service/shopping-cart.service";
 })
 export class ShoppingCartComponent implements OnInit {
   carts: CartItem[] = [];
+  products: ProductItem[];
 
   constructor(private shoppingCartService: ShoppingCartService) {
+    this.products = mockProducts;
   }
 
   get hasItemInCart() {
@@ -25,18 +28,19 @@ export class ShoppingCartComponent implements OnInit {
     this.carts = [];
   }
 
-  removeItem(uuid: string) {
-    this.carts = this.carts.filter(item => item.uuid !== uuid);
-  }
-
   ngOnInit(): void {
-    this.shoppingCartService.sub.subscribe((product: ProductItem) => {
-      let cartItem = this.carts.find(item => item.uuid === product.uuid);
+    this.shoppingCartService.addToCartSub.subscribe((addToCartItem: AddToCartItem) => {
+      let cartItem = this.carts.find(item => item.uuid === addToCartItem.uuid);
       if (cartItem) {
-        cartItem.count++;
+        if (cartItem.count + addToCartItem.count > 0) {
+          cartItem.count = cartItem.count + addToCartItem.count;
+        } else {
+          this.carts = this.carts.filter(cart => cart.uuid != addToCartItem.uuid);
+        }
       } else {
+        let productItem = this.products.find(item => item.uuid === addToCartItem.uuid);
         this.carts.push({
-          ...product, count: 1
+          ...productItem, count: 1
         })
       }
     })

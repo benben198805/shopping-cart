@@ -8,5 +8,5 @@ export class ShoppingCartService {
 
   constructor() { }
 
-  sub = new Subject<any>();
+  addToCartSub = new Subject<any>();
 }

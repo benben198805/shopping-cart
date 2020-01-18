@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {ShoppingCartService} from "../../share/service/shopping-cart.service";
 
 @Component({
   selector: 'app-count-operator',
@@ -7,11 +8,10 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class CountOperatorComponent implements OnInit {
   @Input() count: number;
+  @Input() uuid: string;
   @Input() unit: string;
-  @Output() countChange = new EventEmitter<number>();
-  @Output() removeItem = new EventEmitter();
 
-  constructor() {
+  constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit() {
@@ -19,16 +19,12 @@ export class CountOperatorComponent implements OnInit {
 
   addCount() {
     this.count++;
-    this.countChange.emit(this.count);
+    this.shoppingCartService.addToCartSub.next({uuid: this.uuid, count: 1})
   }
 
   minusCount() {
     this.count--;
-    if (this.count > 0) {
-      this.countChange.emit(this.count);
-    } else if (this.count === 0) {
-      this.removeItem.emit();
-    }
+    this.shoppingCartService.addToCartSub.next({uuid: this.uuid, count: -1})
   }
 
 }

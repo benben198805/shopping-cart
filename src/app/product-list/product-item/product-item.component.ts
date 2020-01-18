@@ -14,6 +14,6 @@ export class ProductItemComponent {
   }
 
   add() {
-    this.shoppingCartService.sub.next(this.product);
+    this.shoppingCartService.addToCartSub.next({uuid: this.product.uuid, count: 1});
   }
 }

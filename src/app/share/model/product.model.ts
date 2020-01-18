@@ -12,3 +12,7 @@ export interface CartItem {
   count: number
 }
 
+export interface AddToCartItem {
+  uuid: string,
+  count: number
+}
