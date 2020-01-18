@@ -9,13 +9,11 @@ import {ShoppingCartService} from "../../share/service/shopping-cart.service";
 })
 export class ProductItemComponent {
   @Input() product: ProductItem;
-  @Output() addToCart = new EventEmitter();
 
   constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   add() {
     this.shoppingCartService.sub.next(this.product);
-    // this.addToCart.emit();
   }
 }

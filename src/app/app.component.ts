@@ -14,8 +14,4 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.products = mockProducts;
   }
-
-  addToCart(uuid: string) {
-  }
-
 }

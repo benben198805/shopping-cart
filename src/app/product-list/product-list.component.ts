@@ -8,12 +8,7 @@ import {ProductItem} from "../share/model/product.model";
 })
 export class ProductListComponent {
   @Input() products: ProductItem[];
-  @Output() addToCart = new EventEmitter<string>();
 
   constructor() {
-  }
-
-  add(uuid: string){
-    this.addToCart.emit(uuid);
   }
 }
