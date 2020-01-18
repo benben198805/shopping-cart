@@ -16,15 +16,6 @@ export class AppComponent implements OnInit {
   }
 
   addToCart(uuid: string) {
-    let cartItem = this.carts.find(item => item.uuid === uuid);
-    if (cartItem) {
-      cartItem.count++;
-    } else {
-      let productItem = this.products.find(item => item.uuid === uuid);
-      this.carts.push({
-        ...productItem, count: 1
-      })
-    }
   }
 
 }

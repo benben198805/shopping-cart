@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductItem} from "../../share/model/product.model";
+import {ShoppingCartService} from "../../share/service/shopping-cart.service";
 
 @Component({
   selector: 'app-product-item',
@@ -10,10 +11,11 @@ export class ProductItemComponent {
   @Input() product: ProductItem;
   @Output() addToCart = new EventEmitter();
 
-  constructor() {
+  constructor(private shoppingCartService: ShoppingCartService) {
   }
 
   add() {
-    this.addToCart.emit()
+    this.shoppingCartService.sub.next(this.product);
+    // this.addToCart.emit();
   }
 }
