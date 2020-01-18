@@ -1,17 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {CartItem, ProductItem} from "./share/model/product.model";
-import {mockProducts} from "./share/mock/mock-data";
+import {Component} from '@angular/core';
+import {CartItem} from "./share/model/product.model";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  products = [] as ProductItem[];
+export class AppComponent {
   carts = [] as CartItem[];
-
-  ngOnInit(): void {
-    this.products = mockProducts;
-  }
 }

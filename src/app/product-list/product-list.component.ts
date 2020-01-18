@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductItem} from "../share/model/product.model";
+import {mockProducts} from "../share/mock/mock-data";
 
 @Component({
   selector: 'app-product-list',
@@ -7,8 +8,9 @@ import {ProductItem} from "../share/model/product.model";
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  @Input() products: ProductItem[];
+  products: ProductItem[];
 
   constructor() {
+    this.products = mockProducts;
   }
 }
