@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CartItem, ProductItem} from "./share/product.model";
-import {mockProducts} from "./share/mock-data";
+import {CartItem, ProductItem} from "./share/model/product.model";
+import {mockProducts} from "./share/mock/mock-data";
 
 @Component({
   selector: 'app-root',
